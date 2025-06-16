@@ -1,0 +1,12 @@
+<div>
+  <h3>Clientes Empresa (SOLVERS)</h3>
+  <ul class="list-group">
+    <li *ngFor="let empresa of clientesEmpresa"
+        (click)="seleccionarEmpresa(empresa)"
+        class="list-group-item"
+        [class.active]="empresa.id === selectedEmpresa?.id">
+      {{ empresa.razonSocial }} ({{ empresa.ruc }})
+    </li>
+  </ul>
+  <p *ngIf="!clientesEmpresa.length">No hay empresas para mostrar.</p>
+</div>

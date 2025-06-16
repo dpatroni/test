@@ -1,0 +1,21 @@
+.proceso-details { font-size: 0.9em; }
+.proceso-details h4 { margin-bottom: 15px; }
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.detail-grid div {
+  background-color: #f9f9f9;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #eee;
+}
+.detail-grid strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #333;
+}
+.notas-section { margin-top: 15px; background-color: #fffadf; padding: 10px; border-radius: 3px; border: 1px solid #f7e8a8; }
+.notas-section strong { display: block; margin-bottom: 5px; }

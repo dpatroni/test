@@ -1,0 +1,50 @@
+<div>
+  <h4>Clientes Morosos y Garantes de: {{ nombreEmpresaSeleccionada || 'Ninguna empresa seleccionada' }}</h4>
+  <div *ngIf="empresaId; else noEmpresa">
+    <div *ngIf="clientesMorososConGarantes.length > 0; else noMorosos">
+      <div *ngFor="let item of clientesMorososConGarantes" class="moroso-card">
+        <h5>Deudor: {{ item.moroso.nombreCompleto }} ({{ item.moroso.documentoIdentidad }}) - Deuda: {{item.moroso.deudaTotal | currency:'PEN'}}</h5>
+        <div class="actions">
+          <h6>Acciones para Deudor:</h6>
+          <button (click)="simularLlamada(item.moroso.id, 'moroso')">Llamar Deudor</button>
+          <button (click)="simularMensaje(item.moroso.id, 'moroso')">Mensaje Deudor</button>
+          <button (click)="simularCarta(item.moroso.id, 'moroso')">Carta Deudor</button>
+          <button (click)="registrarVisita(item.moroso.id, 'moroso')">Visita Deudor</button>
+        </div>
+        <div *ngIf="item.moroso.garantes && item.moroso.garantes.length > 0" class="garantes-section">
+          <h6>Garantes:</h6>
+          <ul>
+            <li *ngFor="let garante of item.moroso.garantes">
+              {{ garante.nombreCompleto }} ({{ garante.documentoIdentidad }})
+              <div class="actions garante-actions">
+                <button (click)="simularLlamada(garante.id, 'garante')">Llamar Garante</button>
+                <button (click)="simularMensaje(garante.id, 'garante')">Mensaje Garante</button>
+                <button (click)="simularCarta(garante.id, 'garante')">Carta Garante</button>
+                <button (click)="registrarVisita(garante.id, 'garante')">Visita Garante</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="actions">
+            <button (click)="registrarAcuerdoPago(item.moroso.id)">Registrar Acuerdo de Pago</button>
+        </div>
+        <hr>
+      </div>
+
+      <!-- Logs -->
+      <h5>Logs de Acciones Extrajudiciales</h5>
+      <div class="logs-container">
+        <div><h6>Llamadas:</h6> <ul class="log-list"><li *ngFor="let l of llamadasLog">{{l.fechaHora | date:'short'}} - {{l.resultado}} ({{l.tipoTarget}}: {{getTargetNombre(l.idTarget, l.tipoTarget)}})</li></ul></div>
+        <div><h6>Mensajes:</h6> <ul class="log-list"><li *ngFor="let m of mensajesLog">{{m.fechaHoraEnvio | date:'short'}} - {{m.resultado}} ({{m.tipoTarget}}: {{getTargetNombre(m.idTarget, m.tipoTarget)}})</li></ul></div>
+        <div><h6>Cartas:</h6> <ul class="log-list"><li *ngFor="let c of cartasLog">{{c.fechaEnvio | date:'short'}} - Modelo {{c.modelo}} - {{c.resultado}} ({{c.tipoTarget}}: {{getTargetNombre(c.idTarget, c.tipoTarget)}})</li></ul></div>
+        <div><h6>Visitas:</h6> <ul class="log-list"><li *ngFor="let v of visitasLog">{{v.fechaHora | date:'short'}} - {{v.resultado}} ({{v.tipoTarget}}: {{getTargetNombre(v.idTarget, v.tipoTarget)}})</li></ul></div>
+        <div><h6>Acuerdos de Pago:</h6> <ul class="log-list"><li *ngFor="let a of acuerdosPagoLog">Deudor {{getNombreMoroso(a.idClienteMoroso)}} - {{a.fechaAcuerdo | date:'short'}} - {{a.montoTotalAcordado | currency:'PEN'}} - {{a.estado}}</li></ul></div>
+      </div>
+
+    </div>
+    <ng-template #noMorosos><p>No hay clientes morosos para esta empresa.</p></ng-template>
+  </div>
+  <ng-template #noEmpresa><p>Por favor, seleccione una empresa.</p></ng-template>
+  <hr>
+  <button class="btn btn-secondary">Generar Reporte de Morosidad (por tiempo)</button>
+</div>

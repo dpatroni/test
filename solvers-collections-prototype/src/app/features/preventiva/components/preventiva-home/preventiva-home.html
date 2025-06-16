@@ -1,0 +1,11 @@
+<div class="preventiva-container">
+  <h2>Módulo de Gestión de Cobranza Preventiva</h2>
+  <div class="layout-container">
+    <div class="empresas-panel">
+      <app-cliente-empresa-list (empresaSeleccionada)="onEmpresaSeleccionada($event)"></app-cliente-empresa-list>
+    </div>
+    <div class="morosos-panel">
+      <app-cliente-moroso-list [empresaId]="selectedEmpresaId"></app-cliente-moroso-list>
+    </div>
+  </div>
+</div>

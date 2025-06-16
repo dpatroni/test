@@ -1,0 +1,17 @@
+.main-container {
+  display: flex;
+  height: calc(100vh - 60px); /* Assuming header height is 60px */
+}
+
+.content-area {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Basic styling for header and sidebar - can be expanded in their own files */
+/* For app-header (in header.component.scss) */
+/* :host { display: block; background-color: #004085; color: white; padding: 15px 20px; height: 60px; box-sizing: border-box; } */
+
+/* For app-sidebar (in sidebar.component.scss) */
+/* :host { display: block; background-color: #f8f9fa; width: 250px; padding: 20px; height: 100%; box-sizing: border-box; border-right: 1px solid #dee2e6; } */

@@ -1,0 +1,27 @@
+<div class="judicial-container">
+  <h2>Módulo de Gestión de Cobranza Judicial</h2>
+  <div class="layout-container">
+    <div class="empresas-panel">
+      <app-cliente-empresa-list-judicial (empresaSeleccionada)="onEmpresaSeleccionada($event)"></app-cliente-empresa-list-judicial>
+    </div>
+    <div class="casos-judiciales-panel">
+      <app-caso-judicial-list [empresaId]="selectedEmpresaId" (casoSeleccionado)="onCasoSeleccionado($event)"></app-caso-judicial-list>
+    </div>
+    <div class="proceso-detail-panel">
+      <app-proceso-judicial-detail [proceso]="selectedProcesoJudicial"></app-proceso-judicial-detail>
+      <div *ngIf="selectedProcesoJudicial" class="report-placeholder">
+        <hr>
+        <button class="btn btn-info">Generar Reporte Detallado del Caso</button>
+      </div>
+    </div>
+  </div>
+  <div class="visualization-placeholder">
+    <hr>
+    <h4>Visualización en Tiempo Real para Cliente Empresa (Placeholder)</h4>
+    <p>Aquí se mostraría la información relevante del proceso para el cliente empresa.</p>
+  </div>
+   <div class="general-report-placeholder">
+    <hr>
+    <button class="btn btn-secondary">Generar Reportes Judiciales Generales (por Corte, Juzgado, etc.)</button>
+  </div>
+</div>

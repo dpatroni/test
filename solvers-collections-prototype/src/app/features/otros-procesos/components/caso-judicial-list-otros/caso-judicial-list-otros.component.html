@@ -1,0 +1,14 @@
+<div>
+  <h4>Listado de Otros Procesos Judiciales de: {{ nombreEmpresaSeleccionada || 'N/A' }}</h4>
+  <div *ngIf="empresaId; else noEmpresa">
+    <ul *ngIf="casosJudiciales.length > 0; else noCasos" class="list-group">
+      <li *ngFor="let caso of casosJudiciales" (click)="seleccionarCaso(caso)" class="list-group-item" [class.active]="caso.id === selectedCaso?.id">
+        Exp: {{ caso.numeroExpediente }} <br>
+        Contraparte: {{ caso.demandado }} <br> <!-- Label changed slightly for context -->
+        Materia: {{ caso.tipoProcesoJudicialCobranzas }} <!-- Field name is generic enough -->
+      </li>
+    </ul>
+    <ng-template #noCasos><p>No hay otros procesos judiciales para esta empresa.</p></ng-template>
+  </div>
+  <ng-template #noEmpresa><p>Seleccione una empresa.</p></ng-template>
+</div>

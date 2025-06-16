@@ -1,0 +1,11 @@
+<div class="extrajudicial-container">
+  <h2>Módulo de Gestión de Cobranza Extra Judicial</h2>
+  <div class="layout-container">
+    <div class="empresas-panel">
+      <app-cliente-empresa-list-extra (empresaSeleccionada)="onEmpresaSeleccionada($event)"></app-cliente-empresa-list-extra>
+    </div>
+    <div class="morosos-garantes-panel">
+      <app-cliente-moroso-garante-list [empresaId]="selectedEmpresaId"></app-cliente-moroso-garante-list>
+    </div>
+  </div>
+</div>

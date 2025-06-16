@@ -1,0 +1,40 @@
+.moroso-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.actions {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  button { margin-right: 5px; margin-bottom: 5px; padding: 5px 10px; font-size: 0.9em; }
+}
+.garantes-section {
+  margin-left: 20px;
+  border-left: 2px solid #f0f0f0;
+  padding-left: 15px;
+  margin-top: 10px;
+  ul { list-style-type: none; padding-left: 0; }
+  li { margin-bottom: 10px; }
+}
+.garante-actions button {
+  font-size: 0.85em;
+  padding: 4px 8px;
+}
+.logs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+  h6 { margin-bottom: 5px; }
+  .log-list {
+    font-size: 0.9em;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 5px;
+    list-style-type: none;
+  }
+}
+hr { margin-top: 15px; margin-bottom: 15px; }

@@ -1,0 +1,49 @@
+<div>
+  <h4>Clientes Morosos de: {{ nombreEmpresaSeleccionada || 'Ninguna empresa seleccionada' }}</h4>
+  <div *ngIf="empresaId; else noEmpresa">
+    <div *ngIf="clientesMorosos.length > 0; else noMorosos">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Deuda Total</th>
+            <th>Acciones Preventivas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let moroso of clientesMorosos">
+            <td>{{ moroso.nombreCompleto }}</td>
+            <td>{{ moroso.documentoIdentidad }}</td>
+            <td>{{ moroso.deudaTotal | currency:'PEN' }}</td>
+            <td>
+              <button class="btn btn-sm btn-info mr-1" (click)="simularLlamada(moroso)">Simular Llamada</button>
+              <button class="btn btn-sm btn-warning" (click)="simularMensaje(moroso)">Simular Mensaje</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Log de llamadas y mensajes (simple) -->
+      <h5>Log de Acciones</h5>
+      <h6>Llamadas Simuladas:</h6>
+      <ul>
+        <li *ngFor="let llamada of llamadasLog">
+          {{ llamada.fechaHora | date:'short' }} - {{ llamada.resultado }} (a {{ getNombreMoroso(llamada.idClienteMoroso) }})
+        </li>
+      </ul>
+      <h6>Mensajes Simulados:</h6>
+      <ul>
+        <li *ngFor="let mensaje of mensajesLog">
+          {{ mensaje.fechaHoraEnvio | date:'short' }} - {{ mensaje.tipo }}: {{ mensaje.resultado }} (a {{ getNombreMoroso(mensaje.idClienteMoroso) }})
+        </li>
+      </ul>
+
+    </div>
+    <ng-template #noMorosos><p>No hay clientes morosos para esta empresa.</p></ng-template>
+  </div>
+  <ng-template #noEmpresa><p>Por favor, seleccione una empresa para ver sus clientes morosos.</p></ng-template>
+
+  <hr>
+  <button class="btn btn-secondary">Generar Reporte Simplificado de Morosidad</button>
+</div>

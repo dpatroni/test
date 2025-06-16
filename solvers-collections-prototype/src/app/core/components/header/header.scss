@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  background-color: #004085;
+  color: white;
+  padding: 15px 20px;
+  height: 60px; /* Fixed height for the header */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
