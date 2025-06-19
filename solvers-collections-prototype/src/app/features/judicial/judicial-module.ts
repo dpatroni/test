@@ -11,12 +11,13 @@ import { ProcesoJudicialDetailComponent } from './components/proceso-judicial-de
 
 @NgModule({
   declarations: [
+
+  ],
+  imports: [
     JudicialHomeComponent,
     ClienteEmpresaListJudicialComponent,
     CasoJudicialListComponent,
-    ProcesoJudicialDetailComponent
-  ],
-  imports: [
+    ProcesoJudicialDetailComponent,
     CommonModule,
     FormsModule, // Add FormsModule here
     JudicialRoutingModule

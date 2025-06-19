@@ -1,32 +1,45 @@
 <div *ngIf="proceso; else noProcesoSelected" class="proceso-details">
-  <h4>Detalle del Otro Proceso Judicial: {{ proceso.numeroExpediente }}</h4>
+  <h4>Detalle del Otro Proceso Judicial: {{ proceso?.numeroExpediente }}</h4>
   <div class="detail-grid">
-    <div><strong>Cliente Empresa ID:</strong> {{ proceso.idClienteEmpresa }}</div>
-    <div><strong>Cliente Involucrado ID:</strong> {{ proceso.idClienteMoroso }}</div> <!-- Label change -->
-    <div><strong>Parte Principal (Demandante/Solicitante):</strong> {{ proceso.demandante }}</div> <!-- Label change -->
-    <div><strong>Contraparte (Demandado/Solicitado):</strong> {{ proceso.demandado }}</div> <!-- Label change -->
+    <div><strong>Cliente Empresa ID:</strong> {{ proceso?.idClienteEmpresa }}</div>
+    <div><strong>Cliente Involucrado ID:</strong> {{ proceso?.idClienteMoroso }}</div> <!-- Label change -->
+    <div><strong>Parte Principal (Demandante/Solicitante):</strong> {{ proceso?.demandante }}</div> <!-- Label change -->
+    <div><strong>Contraparte (Demandado/Solicitado):</strong> {{ proceso?.demandado }}</div> <!-- Label change -->
 
-    <div><strong>Corte Superior:</strong> {{ proceso.corteSuperior }}</div>
-    <div><strong>Tipo Juzgado:</strong> {{ proceso.tipoJuzgado }}</div>
-    <div><strong>Nombre Juzgado:</strong> {{ proceso.nombreJuzgado || 'N/A' }}</div>
-    <div><strong>Salas Superiores:</strong> {{ proceso.salasSuperiores || 'N/A' }}</div>
-    <div><strong>Nombre Sala:</strong> {{ proceso.nombreSala || 'N/A' }}</div>
-    <div><strong>En Corte Suprema:</strong> {{ proceso.corteSuprema ? 'Sí' : 'No' }}</div>
-    <div><strong>Ubic. Corte Suprema:</strong> {{ proceso.ubicacionCorteSuprema || 'N/A' }}</div>
+    <div><strong>Corte Superior:</strong> {{ proceso?.corteSuperior }}</div>
+    <div><strong>Tipo Juzgado:</strong> {{ proceso?.tipoJuzgado }}</div>
+    <div><strong>Nombre Juzgado:</strong> {{ proceso?.nombreJuzgado || 'N/A' }}</div>
+    <div><strong>Salas Superiores:</strong> {{ proceso?.salasSuperiores || 'N/A' }}</div>
+    <div><strong>Nombre Sala:</strong> {{ proceso?.nombreSala || 'N/A' }}</div>
+    <div><strong>En Corte Suprema:</strong> {{ proceso?.corteSuprema ? 'Sí' : 'No' }}</div>
+    <div><strong>Ubic. Corte Suprema:</strong> {{ proceso?.ubicacionCorteSuprema || 'N/A' }}</div>
 
-    <div><strong>Tipo Proceso:</strong> {{ proceso.tipoProcesoJudicialCobranzas }}</div> <!-- Field is generic -->
-    <div><strong>Etapa Procesal:</strong> {{ proceso.etapaProcesal }}</div>
-    <div><strong>Número Expediente:</strong> {{ proceso.numeroExpediente }}</div>
+    <div><strong>Tipo Proceso:</strong> {{ proceso?.tipoProcesoJudicialCobranzas }}</div> <!-- Field is generic -->
+    <div><strong>Etapa Procesal:</strong> {{ proceso?.etapaProcesal }}</div>
+    <div><strong>Número Expediente:</strong> {{ proceso?.numeroExpediente }}</div>
 
-    <div><strong>Situación Actual:</strong> {{ proceso.situacionActual }}</div>
-    <div><strong>Acciones por Actuar:</strong> {{ proceso.accionesPorActuar }}</div>
+    <div><strong>Situación Actual:</strong> {{ proceso?.situacionActual }}</div>
+    <div><strong>Acciones por Actuar:</strong> {{ proceso?.accionesPorActuar }}</div>
 
-    <div><strong>Fecha Inicio:</strong> {{ proceso.fechaInicioProceso | date:'dd/MM/yyyy' || 'N/A' }}</div>
-    <div><strong>Monto Involucrado:</strong> {{ proceso.montoDemandado | currency:'PEN' || 'N/A' }}</div> <!-- Label change -->
-    <div><strong>Abogado Encargado:</strong> {{ proceso.abogadoEncargado || 'N/A' }}</div>
+    <div>
+  <strong>Fecha Inicio:</strong>
+  <ng-container *ngIf="proceso?.fechaInicioProceso; else noFecha">
+    {{ proceso.fechaInicioProceso | date: 'dd/MM/yyyy' }}
+  </ng-container>
+  <ng-template #noFecha>N/A</ng-template>
+</div>
+
+    <div>
+  <strong>Monto Involucrado:</strong>
+  {{ proceso.montoDemandado !== undefined && proceso.montoDemandado !== null
+      ? (proceso.montoDemandado | currency:'PEN')
+      : 'N/A' }}
+</div>
+
+    <div><strong>Abogado Encargado:</strong> {{ proceso?.abogadoEncargado || 'N/A' }}</div>
   </div>
   <div *ngIf="proceso.notas" class="notas-section">
-    <strong>Notas Adicionales:</strong> <p>{{ proceso.notas }}</p>
+    <strong>Notas Adicionales:</strong> <p>{{ proceso?.notas }}</p>
   </div>
 </div>
 <ng-template #noProcesoSelected>

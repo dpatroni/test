@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ClienteMoroso } from '../../../../models/cliente-moroso.model';
 import { Llamada } from '../../../../models/llamada.model';
 import { Mensaje, TipoMensaje } from '../../../../models/mensaje.model';
+import { CommonModule } from '@angular/common';
 
 // Mock data
 const MOCK_CLIENTES_MOROSOS: ClienteMoroso[] = [
@@ -13,7 +14,10 @@ const MOCK_CLIENTES_MOROSOS: ClienteMoroso[] = [
 @Component({
   selector: 'app-cliente-moroso-list',
   templateUrl: './cliente-moroso-list.html',
-  styleUrls: ['./cliente-moroso-list.scss']
+  styleUrls: ['./cliente-moroso-list.scss'],
+  imports: [
+    CommonModule
+  ],
 })
 export class ClienteMorosoListComponent implements OnInit, OnChanges {
   @Input() empresaId: string | null = null;

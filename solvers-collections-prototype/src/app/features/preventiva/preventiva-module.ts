@@ -9,11 +9,12 @@ import { ClienteMorosoListComponent } from './components/cliente-moroso-list/cli
 
 @NgModule({
   declarations: [
-    PreventivaHomeComponent,
-    ClienteEmpresaListComponent,
-    ClienteMorosoListComponent
+
   ],
   imports: [
+    PreventivaHomeComponent,
+    ClienteEmpresaListComponent,
+    ClienteMorosoListComponent,
     CommonModule,
     PreventivaRoutingModule
   ],

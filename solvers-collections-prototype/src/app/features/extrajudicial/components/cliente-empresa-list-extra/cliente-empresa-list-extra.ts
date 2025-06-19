@@ -9,6 +9,7 @@ const MOCK_CLIENTES_EMPRESA_EXTRA: ClienteEmpresa[] = [
 ];
 
 @Component({
+  standalone: true,
   selector: 'app-cliente-empresa-list-extra',
   templateUrl: './cliente-empresa-list-extra.html',
   styleUrls: ['./cliente-empresa-list-extra.scss']

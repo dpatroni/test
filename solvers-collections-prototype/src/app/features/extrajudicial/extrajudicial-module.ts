@@ -10,11 +10,12 @@ import { ClienteMorosoGaranteListComponent } from './components/cliente-moroso-g
 
 @NgModule({
   declarations: [
-    ExtraJudicialHomeComponent,
-    ClienteEmpresaListExtraComponent,
-    ClienteMorosoGaranteListComponent
+
   ],
   imports: [
+    ExtraJudicialHomeComponent,
+    ClienteEmpresaListExtraComponent,
+    ClienteMorosoGaranteListComponent,
     CommonModule,
     FormsModule, // Add FormsModule here
     ExtrajudicialRoutingModule

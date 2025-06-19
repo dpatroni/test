@@ -6,6 +6,7 @@ import { Mensaje, TipoMensaje } from '../../../../models/mensaje.model';
 import { CartaCobranza, ModeloCarta } from '../../../../models/carta-cobranza.model';
 import { Visita } from '../../../../models/visita.model';
 import { AcuerdoPago } from '../../../../models/acuerdo-pago.model';
+import { CommonModule } from '@angular/common';
 
 // Mock Data
 const MOCK_GARANTES: Garante[] = [
@@ -36,9 +37,14 @@ interface VisitaLog extends Visita, LogItem {}
 
 
 @Component({
+  standalone: true,
   selector: 'app-cliente-moroso-garante-list',
   templateUrl: './cliente-moroso-garante-list.html',
-  styleUrls: ['./cliente-moroso-garante-list.scss']
+  styleUrls: ['./cliente-moroso-garante-list.scss'],
+  imports: [
+    CommonModule, // 👈 Esto es lo que te falta
+    // otros módulos o componentes necesarios
+  ]
 })
 export class ClienteMorosoGaranteListComponent implements OnInit, OnChanges {
   @Input() empresaId: string | null = null;
