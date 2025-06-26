@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ClienteEmpresa } from '../../../../models/cliente-empresa.model';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 // Mock data for now
 const MOCK_CLIENTES_EMPRESA_EXTRA: ClienteEmpresa[] = [
@@ -9,8 +10,9 @@ const MOCK_CLIENTES_EMPRESA_EXTRA: ClienteEmpresa[] = [
 ];
 
 @Component({
-  standalone: true,
   selector: 'app-cliente-empresa-list-extra',
+  standalone: true, // Added standalone
+  imports: [CommonModule], // Added CommonModule for *ngFor etc.
   templateUrl: './cliente-empresa-list-extra.html',
   styleUrls: ['./cliente-empresa-list-extra.scss']
 })

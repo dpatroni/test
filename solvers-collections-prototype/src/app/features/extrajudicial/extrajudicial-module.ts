@@ -1,27 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 
 import { ExtrajudicialRoutingModule } from './extrajudicial-routing-module';
-import { ExtraJudicialHomeComponent } from './components/extrajudicial-home/extrajudicial-home';
-import { ClienteEmpresaListExtraComponent } from './components/cliente-empresa-list-extra/cliente-empresa-list-extra';
-import { ClienteMorosoGaranteListComponent } from './components/cliente-moroso-garante-list/cliente-moroso-garante-list';
-
+// Component imports removed
 
 @NgModule({
   declarations: [
-
+    // Components removed
   ],
   imports: [
-    ExtraJudicialHomeComponent,
-    ClienteEmpresaListExtraComponent,
-    ClienteMorosoGaranteListComponent,
     CommonModule,
-    FormsModule, // Add FormsModule here
+    FormsModule,
     ExtrajudicialRoutingModule
   ],
   exports: [
-    ExtraJudicialHomeComponent
+    // Components removed
   ]
 })
 export class ExtrajudicialModule { }

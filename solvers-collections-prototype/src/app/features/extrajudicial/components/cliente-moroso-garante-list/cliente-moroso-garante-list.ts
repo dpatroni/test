@@ -6,7 +6,8 @@ import { Mensaje, TipoMensaje } from '../../../../models/mensaje.model';
 import { CartaCobranza, ModeloCarta } from '../../../../models/carta-cobranza.model';
 import { Visita } from '../../../../models/visita.model';
 import { AcuerdoPago } from '../../../../models/acuerdo-pago.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { FormsModule } from '@angular/forms';   // Import FormsModule
 
 // Mock Data
 const MOCK_GARANTES: Garante[] = [
@@ -23,7 +24,6 @@ const MOCK_CLIENTES_MOROSOS_EXTRA: ClienteMoroso[] = [
 
 interface ClienteMorosoConGarantes {
   moroso: ClienteMoroso;
-  // garantes?: Garante[]; // Already in moroso model
 }
 type TargetType = 'moroso' | 'garante';
 interface LogItem {
@@ -37,14 +37,11 @@ interface VisitaLog extends Visita, LogItem {}
 
 
 @Component({
-  standalone: true,
   selector: 'app-cliente-moroso-garante-list',
+  standalone: true, // Added standalone
+  imports: [CommonModule, FormsModule], // Added CommonModule, FormsModule
   templateUrl: './cliente-moroso-garante-list.html',
-  styleUrls: ['./cliente-moroso-garante-list.scss'],
-  imports: [
-    CommonModule, // 👈 Esto es lo que te falta
-    // otros módulos o componentes necesarios
-  ]
+  styleUrls: ['./cliente-moroso-garante-list.scss']
 })
 export class ClienteMorosoGaranteListComponent implements OnInit, OnChanges {
   @Input() empresaId: string | null = null;
@@ -52,7 +49,7 @@ export class ClienteMorosoGaranteListComponent implements OnInit, OnChanges {
 
   clientesMorososConGarantes: ClienteMorosoConGarantes[] = [];
   private allMorosos: ClienteMoroso[] = MOCK_CLIENTES_MOROSOS_EXTRA;
-  private allGarantes: Garante[] = MOCK_GARANTES; // For easy lookup
+  private allGarantes: Garante[] = MOCK_GARANTES;
 
   llamadasLog: LlamadaLog[] = [];
   mensajesLog: MensajeLog[] = [];
@@ -68,7 +65,7 @@ export class ClienteMorosoGaranteListComponent implements OnInit, OnChanges {
     if (changes['empresaId'] && this.empresaId) {
       const filteredMorosos = this.allMorosos.filter(m => m.idClienteEmpresa === this.empresaId);
       this.clientesMorososConGarantes = filteredMorosos.map(m => ({ moroso: m }));
-      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`; // Mock
+      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`;
       this.clearLogs();
     } else if (!this.empresaId) {
       this.clientesMorososConGarantes = [];

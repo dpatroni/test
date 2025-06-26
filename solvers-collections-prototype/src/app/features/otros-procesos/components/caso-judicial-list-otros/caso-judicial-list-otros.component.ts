@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ProcesoJudicial } from '../../../../models/proceso-judicial.model'; // Reusing
+import { CommonModule } from '@angular/common'; // Import CommonModule
+
 // Distinct Mock Data
 const MOCK_OTROS_PROCESOS: ProcesoJudicial[] = [
   { id: 'procO1', idClienteEmpresa: 'empO1', idClienteMoroso: 'cliX1', demandante: 'Consultores Legales Max SAC', demandado: 'Empresa Constructora XYZ', corteSuperior: 'Corte Superior de Lima', tipoJuzgado: 'Juzgado Civil', numeroExpediente: 'OP-001-2023', tipoProcesoJudicialCobranzas: 'Incumplimiento de Contrato', etapaProcesal: 'Pruebas', situacionActual: 'Evaluando peritaje', accionesPorActuar: 'Presentar alegatos' },
@@ -8,6 +10,8 @@ const MOCK_OTROS_PROCESOS: ProcesoJudicial[] = [
 ];
 @Component({
   selector: 'app-caso-judicial-list-otros',
+  standalone: true, // Added standalone
+  imports: [CommonModule], // Added CommonModule
   templateUrl: './caso-judicial-list-otros.component.html',
   styleUrls: ['./caso-judicial-list-otros.component.scss']
 })

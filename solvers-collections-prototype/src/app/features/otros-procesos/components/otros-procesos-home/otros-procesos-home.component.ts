@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import { ClienteEmpresa } from '../../../../models/cliente-empresa.model';
 import { ProcesoJudicial } from '../../../../models/proceso-judicial.model'; // Reusing the same model
-import { ProcesoJudicialDetailOtrosComponent } from '../proceso-judicial-detail-otros/proceso-judicial-detail-otros.component';
-import { CasoJudicialListOtrosComponent } from '../caso-judicial-list-otros/caso-judicial-list-otros.component';
-import { ClienteEmpresaListOtrosComponent } from '../cliente-empresa-list-otros/cliente-empresa-list-otros.component';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { ClienteEmpresaListOtrosComponent } from '../cliente-empresa-list-otros/cliente-empresa-list-otros.component'; // Import child
+import { CasoJudicialListOtrosComponent } from '../caso-judicial-list-otros/caso-judicial-list-otros.component'; // Import child
+import { ProcesoJudicialDetailOtrosComponent } from '../proceso-judicial-detail-otros/proceso-judicial-detail-otros.component'; // Import child
 
 @Component({
   selector: 'app-otros-procesos-home',
-  templateUrl: './otros-procesos-home.component.html',
-  styleUrls: ['./otros-procesos-home.component.scss'],
+  standalone: true, // Added standalone
   imports: [
-    ProcesoJudicialDetailOtrosComponent,
-    CasoJudicialListOtrosComponent,
-    ClienteEmpresaListOtrosComponent
-  ]
+    CommonModule,
+    ClienteEmpresaListOtrosComponent,    // Added child
+    CasoJudicialListOtrosComponent,      // Added child
+    ProcesoJudicialDetailOtrosComponent  // Added child
+  ],
+  templateUrl: './otros-procesos-home.component.html',
+  styleUrls: ['./otros-procesos-home.component.scss']
 })
 export class OtrosProcesosHomeComponent {
   selectedEmpresaId: string | null = null;

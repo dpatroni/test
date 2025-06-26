@@ -2,24 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PreventivaRoutingModule } from './preventiva-routing-module';
-import { PreventivaHomeComponent } from './components/preventiva-home/preventiva-home';
-import { ClienteEmpresaListComponent } from './components/cliente-empresa-list/cliente-empresa-list';
-import { ClienteMorosoListComponent } from './components/cliente-moroso-list/cliente-moroso-list';
-
+// Component imports removed as they are now standalone and handled by their own imports or routing.
 
 @NgModule({
   declarations: [
-
+    // Components removed as they are standalone
   ],
   imports: [
-    PreventivaHomeComponent,
-    ClienteEmpresaListComponent,
-    ClienteMorosoListComponent,
-    CommonModule,
+    CommonModule, // Kept for now, though components are standalone. Can be removed if module has no template.
     PreventivaRoutingModule
   ],
   exports: [
-    PreventivaHomeComponent // Since PreventivaHomeComponent is the entry point and might be used if this module is ever directly embedded.
+    // PreventivaHomeComponent removed as it's standalone and routing handles its exposure.
+    // If this module were to be imported by another NgModule and expected to provide components,
+    // then standalone components would be exported directly from here. But for routing, not needed.
   ]
 })
 export class PreventivaModule { }

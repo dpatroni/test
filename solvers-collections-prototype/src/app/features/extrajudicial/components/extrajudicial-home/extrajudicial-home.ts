@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { ClienteEmpresa } from '../../../../models/cliente-empresa.model';
-import { ClienteEmpresaListExtraComponent } from '../cliente-empresa-list-extra/cliente-empresa-list-extra';
-import { ClienteMorosoGaranteListComponent } from '../cliente-moroso-garante-list/cliente-moroso-garante-list';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { ClienteEmpresaListExtraComponent } from '../cliente-empresa-list-extra/cliente-empresa-list-extra'; // Import child
+import { ClienteMorosoGaranteListComponent } from '../cliente-moroso-garante-list/cliente-moroso-garante-list'; // Import child
 
 @Component({
-  standalone: true,
   selector: 'app-extrajudicial-home',
-  templateUrl: './extrajudicial-home.html',
-  styleUrls: ['./extrajudicial-home.scss'],
+  standalone: true, // Added standalone
   imports: [
-    ClienteEmpresaListExtraComponent,
-    ClienteMorosoGaranteListComponent]
+    CommonModule,
+    ClienteEmpresaListExtraComponent, // Added child
+    ClienteMorosoGaranteListComponent  // Added child
+  ],
+  templateUrl: './extrajudicial-home.html',
+  styleUrls: ['./extrajudicial-home.scss']
 })
 export class ExtraJudicialHomeComponent {
   selectedEmpresaId: string | null = null;

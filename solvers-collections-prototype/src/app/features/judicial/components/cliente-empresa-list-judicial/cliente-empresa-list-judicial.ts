@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ClienteEmpresa } from '../../../../models/cliente-empresa.model';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+
 const MOCK_CLIENTES_EMPRESA_JUD: ClienteEmpresa[] = [
   { id: 'empJ1', razonSocial: 'Financiera Confianza SA', ruc: '20500000005', contactoPrincipal: { id: 'cJ1' } },
   { id: 'empJ2', razonSocial: 'Inversiones Seguras EIRL', ruc: '20600000006', contactoPrincipal: { id: 'cJ2' } },
@@ -7,6 +9,8 @@ const MOCK_CLIENTES_EMPRESA_JUD: ClienteEmpresa[] = [
 ];
 @Component({
   selector: 'app-cliente-empresa-list-judicial',
+  standalone: true, // Added standalone
+  imports: [CommonModule], // Added CommonModule
   templateUrl: './cliente-empresa-list-judicial.html',
   styleUrls: ['./cliente-empresa-list-judicial.scss']
 })

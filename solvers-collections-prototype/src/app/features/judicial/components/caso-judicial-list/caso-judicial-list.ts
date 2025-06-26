@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ProcesoJudicial } from '../../../../models/proceso-judicial.model';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 const MOCK_PROCESOS_JUDICIALES: ProcesoJudicial[] = [
   { id: 'procJ1', idClienteEmpresa: 'empJ1', idClienteMoroso: 'morJ1', demandante: 'Financiera Confianza SA', demandado: 'Deudor Judicial Uno', corteSuperior: 'Corte Superior de Lima', tipoJuzgado: 'Juzgado Civil', numeroExpediente: '00123-2023-CI', tipoProcesoJudicialCobranzas: 'Ejecución de Garantías', etapaProcesal: 'Sentencia', situacionActual: 'Pendiente de ejecución', accionesPorActuar: 'Coordinar embargo' },
@@ -9,6 +10,8 @@ const MOCK_PROCESOS_JUDICIALES: ProcesoJudicial[] = [
 
 @Component({
   selector: 'app-caso-judicial-list',
+  standalone: true, // Added standalone
+  imports: [CommonModule], // Added CommonModule
   templateUrl: './caso-judicial-list.html',
   styleUrls: ['./caso-judicial-list.scss']
 })
@@ -16,7 +19,7 @@ export class CasoJudicialListComponent implements OnInit, OnChanges {
   @Input() empresaId: string | null = null;
   @Output() casoSeleccionado = new EventEmitter<ProcesoJudicial>();
 
-  nombreEmpresaSeleccionada: string | null = null; // Placeholder
+  nombreEmpresaSeleccionada: string | null = null;
   casosJudiciales: ProcesoJudicial[] = [];
   private allCasos: ProcesoJudicial[] = MOCK_PROCESOS_JUDICIALES;
   selectedCaso: ProcesoJudicial | null = null;
@@ -26,12 +29,12 @@ export class CasoJudicialListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['empresaId'] && this.empresaId) {
       this.casosJudiciales = this.allCasos.filter(c => c.idClienteEmpresa === this.empresaId);
-      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`; // Mock
-      this.selectedCaso = null; // Reset selection
-      if(this.casosJudiciales.length > 0) { // Auto-select first case
+      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`;
+      this.selectedCaso = null;
+      if(this.casosJudiciales.length > 0) {
         // this.seleccionarCaso(this.casosJudiciales[0]);
       } else {
-        this.casoSeleccionado.emit(undefined); // Clear details if no cases
+        this.casoSeleccionado.emit(undefined);
       }
     } else if (!this.empresaId) {
       this.casosJudiciales = [];

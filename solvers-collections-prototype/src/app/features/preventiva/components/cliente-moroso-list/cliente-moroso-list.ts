@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ClienteMoroso } from '../../../../models/cliente-moroso.model';
 import { Llamada } from '../../../../models/llamada.model';
 import { Mensaje, TipoMensaje } from '../../../../models/mensaje.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { FormsModule } from '@angular/forms';   // Import FormsModule
 
-// Mock data
+// Mock data (still used as per subtask scope for this component)
 const MOCK_CLIENTES_MOROSOS: ClienteMoroso[] = [
   { id: 'mor1', idClienteEmpresa: 'emp1', nombreCompleto: 'Deudor Uno Preventivo', documentoIdentidad: '11111111', contacto: {id: 'c4'}, deudaTotal: 500 },
   { id: 'mor2', idClienteEmpresa: 'emp1', nombreCompleto: 'Deudor Dos Preventivo', documentoIdentidad: '22222222', contacto: {id: 'c5'}, deudaTotal: 1200 },
@@ -13,15 +14,14 @@ const MOCK_CLIENTES_MOROSOS: ClienteMoroso[] = [
 
 @Component({
   selector: 'app-cliente-moroso-list',
+  standalone: true, // Added standalone
+  imports: [CommonModule, FormsModule], // Added CommonModule, FormsModule
   templateUrl: './cliente-moroso-list.html',
-  styleUrls: ['./cliente-moroso-list.scss'],
-  imports: [
-    CommonModule
-  ],
+  styleUrls: ['./cliente-moroso-list.scss']
 })
 export class ClienteMorosoListComponent implements OnInit, OnChanges {
   @Input() empresaId: string | null = null;
-  nombreEmpresaSeleccionada: string | null = null; // To display which company's debtors are shown
+  nombreEmpresaSeleccionada: string | null = null;
 
   clientesMorosos: ClienteMoroso[] = [];
   private allClientesMorosos: ClienteMoroso[] = MOCK_CLIENTES_MOROSOS;
@@ -32,15 +32,13 @@ export class ClienteMorosoListComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
-    // Initial load if needed, though ngOnChanges will handle it mostly
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['empresaId'] && this.empresaId) {
       this.clientesMorosos = this.allClientesMorosos.filter(m => m.idClienteEmpresa === this.empresaId);
-      // Mock: Get empresa name (in a real app, this would be from a service or input)
-      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`;
-      this.llamadasLog = []; // Clear logs when company changes
+      this.nombreEmpresaSeleccionada = `Empresa ID: ${this.empresaId}`; // This would ideally come from ClienteEmpresaService
+      this.llamadasLog = [];
       this.mensajesLog = [];
     } else if (!this.empresaId) {
       this.clientesMorosos = [];
@@ -74,7 +72,7 @@ export class ClienteMorosoListComponent implements OnInit, OnChanges {
         id: `msg${Date.now()}`,
         idClienteMoroso: moroso.id,
         tipo: tipoMensaje,
-        destino: 'Destino Simulado', // Placeholder
+        destino: 'Destino Simulado',
         contenido: 'Recordatorio de pago preventivo.',
         fechaHoraEnvio: new Date(),
         resultado: resultado,
